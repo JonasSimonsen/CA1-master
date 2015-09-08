@@ -29,8 +29,8 @@ public class ChatServer {
         String message = input.nextLine(); //IMPORTANT blocking call
         Logger.getLogger(ChatServer.class.getName()).log(Level.INFO, String.format("Received the message: %1$S ", message));
         while (!message.equals(ProtocolStrings.STOP)) {
-            writer.println(message.toUpperCase());
-            Logger.getLogger(ChatServer.class.getName()).log(Level.INFO, String.format("Received the message: %1$S ", message.toUpperCase()));
+            writer.println(message);
+            Logger.getLogger(ChatServer.class.getName()).log(Level.INFO, String.format("Received the message: %1$S ", message));
             message = input.nextLine(); //IMPORTANT blocking call
         }
         writer.println(ProtocolStrings.STOP);//Echo the stop message back to the client for a nice closedown

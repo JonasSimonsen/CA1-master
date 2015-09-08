@@ -15,29 +15,23 @@ import java.util.Scanner;
  * @author jonassimonsen
  */
 public class ProtocolStrings {
-    //Register as new user
-    //USER#{NAME}
-    public static String USER = "USER#";
-    public static String NAME;
-    
-    //Send message to another user
-    //MSG#{reciever}#{message}
-    public static String MSG = "MSG#";
-    public static String RECIEVER;
-    public static String MESSAGE;
-    
-    
-    //Disconnect from chat server
-    //STOP#
+
     public static String STOP = "STOP#";
-    
-    //User list containing all online users. Should be sent when a new Client connect or disconnects
-    //USERLIST#
-    public static String USERLIST = "USERLIST#";
-    
-    
-    
-    
-    
-    
+
+    public static String connectUser(String name) {
+        return "USER#" + name;
+    }
+
+    public static String MSGfromUser(String recievers, String msg) {
+        return "MSG#" + recievers + "#" + msg;
+    }
+
+    public static String MSGtoUser(String sender, String msg) {
+        return "MSG#" + sender + "#" + msg;
+    }
+
+    public static String userList(String users) {
+        return "USERLIST#" + users;
+    }
+
 }

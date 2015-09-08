@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package chatserver;
 
 import java.io.IOException;
@@ -12,12 +7,7 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import shared.ProtocolStrings;
 
-/**
- *
- * @author jonassimonsen
- */
-public class ClientHandler {
-    public class ClientHandler extends Thread {
+public class UserHandler extends Thread{
 
     ChatServer mainServer;
     public Socket s;
@@ -27,7 +17,7 @@ public class ClientHandler {
 
     //declare possible states for client
     //start the state of the client as connecting. We just instiated the object
-    public ClientHandler(Socket socket, ChatServer mainServer) throws IOException {
+    public UserHandler(Socket socket, ChatServer mainServer) throws IOException {
         this.mainServer = mainServer;
         s = socket;
         input = new Scanner(s.getInputStream());
@@ -69,5 +59,11 @@ public class ClientHandler {
         writer.println(msg);
         chatLogger.log(Level.INFO, this.getName() + "client received: " + msg);
     }
+
+    public Object getUserName() {
+    }
+
+    String getUserList() {
+    }
 }
-}
+

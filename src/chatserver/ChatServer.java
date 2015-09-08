@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Properties;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -17,25 +18,10 @@ public class ChatServer {
     private static boolean keepRunning = true;
     private static ServerSocket serverSocket;
     private static final Properties properties = Utils.initProperties("server.properties");
+    private ArrayList<UserHandler> users = new ArrayList<>();
 
     public static void stopServer() {
         keepRunning = false;
-    }
-
-    private static void handleClient(Socket socket) throws IOException {
-        Scanner input = new Scanner(socket.getInputStream());
-        PrintWriter writer = new PrintWriter(socket.getOutputStream(), true);
-
-        String message = input.nextLine(); //IMPORTANT blocking call
-        Logger.getLogger(ChatServer.class.getName()).log(Level.INFO, String.format("Received the message: %1$S ", message));
-        while (!message.equals(ProtocolStrings.STOP)) {
-            writer.println(message);
-            Logger.getLogger(ChatServer.class.getName()).log(Level.INFO, String.format("Received the message: %1$S ", message));
-            message = input.nextLine(); //IMPORTANT blocking call
-        }
-        writer.println(ProtocolStrings.STOP);//Echo the stop message back to the client for a nice closedown
-        socket.close();
-        Logger.getLogger(ChatServer.class.getName()).log(Level.INFO, "Closed a Connection");
     }
 
     private void runServer() {
@@ -49,10 +35,52 @@ public class ChatServer {
             do {
                 Socket socket = serverSocket.accept(); //Important Blocking call
                 Logger.getLogger(ChatServer.class.getName()).log(Level.INFO, "Connected to a client");
-                handleClient(socket);
+                UserHandler UH = new UserHandler(socket, this);
+                UH.start();
+                users.add(UH);
+                System.out.println("Added a new user");
+                sendUserList();
             } while (keepRunning);
         } catch (IOException ex) {
             Logger.getLogger(ChatServer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void removeHandler(UserHandler uh) {
+        users.remove(uh);
+        System.out.println("Removed a client");
+        sendUserList();
+    }
+
+    public void send(String receiveres, String msg) {
+        if (receiveres.equals("*")) {
+            for (UserHandler uh : users) {
+                uh.send(msg);
+            }
+        } else {
+            String[] receiveresArr = receiveres.split(",");
+            for (String receiver : receiveresArr) {
+                for (UserHandler uh : users) {
+                    if (receiver.equals(uh.getUserName())) {
+                        uh.send(msg);
+                    }
+                }
+            }
+        }
+    }
+
+    public void sendUserList() {
+        String msg = "";
+        for (UserHandler uh : users) {
+            msg += uh.getUserList() + ",";
+        }
+        //Fjerner den sidste komma
+        if (msg.endsWith(",")) {
+            msg = msg.substring(0, msg.length() - 1);
+        }
+
+        for (UserHandler uh : users) {
+            uh.send(ProtocolStrings.userList(msg));
         }
     }
 

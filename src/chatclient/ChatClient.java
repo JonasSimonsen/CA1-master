@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.Observable;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,7 +19,7 @@ import java.util.logging.Logger;
  *
  * @author jonassimonsen
  */
-public class ChatClient {
+public class ChatClient extends Observable implements Runnable {
     
 Socket socket;
     private int port;
@@ -29,6 +30,10 @@ Socket socket;
     
     public ChatClient(EchoGUI gui) {
         GUI = gui;
+    }
+
+    public ChatClient() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public void connect(String address, int port) throws UnknownHostException, IOException {

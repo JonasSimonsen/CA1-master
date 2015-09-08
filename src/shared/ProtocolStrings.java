@@ -10,5 +10,6 @@ package shared;
  * @author jonassimonsen
  */
 public class ProtocolStrings {
+    public static Object STOP;
     
 }

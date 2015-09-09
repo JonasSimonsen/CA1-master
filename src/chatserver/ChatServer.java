@@ -50,7 +50,7 @@ public class ChatServer {
         users.remove(uh);
         System.out.println("Removed a client");
         sendUserList();
-//        
+        
     }
 
     public void send(String receiveres, String msg) {
@@ -84,6 +84,9 @@ public class ChatServer {
             uh.send(ProtocolStrings.userList(msg));
         }
     }
+    
+    
+
     
     public void userConnected(String ClientName) {
         for (UserHandler uh : users) {

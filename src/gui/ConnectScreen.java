@@ -14,12 +14,17 @@ public class ConnectScreen extends javax.swing.JFrame implements Observer {
 
 
     private ChatClient CC;
+    private UserHandler UH;
     private ChatServer CS;
-    private Socket socket = new Socket();
+    //private ChatServer CS;
+    //private Socket socket = new Socket();
 
     public ConnectScreen() {
         initComponents();
         CC = new ChatClient();
+       
+        
+        
         CC.addObserver(this);
     }
     
@@ -87,10 +92,22 @@ public class ConnectScreen extends javax.swing.JFrame implements Observer {
                 
                  
                 
-        try {
-            CC.connect("localhost", 9090);
+        
+            
+            CC = new ChatClient(jTextField1.getText());
             CC.addObserver(this);
-            CC.run();
+            try {
+            
+            CC.connect("localhost", 9090);
+            
+            
+            
+            
+            
+
+            
+            
+            
             
             
             

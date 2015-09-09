@@ -3,20 +3,21 @@ package chatserver;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import shared.ProtocolStrings;
+import static shared.ProtocolStrings.userList;
 
-public class UserHandler extends Thread{
+public class UserHandler extends Thread {
 
-  
-   
     Socket socket;
     Scanner input;
     PrintWriter writer;
-    
+    private ArrayList<String> userList;
+
     private String userName = "";
     private ChatServer CS;
 
@@ -28,12 +29,9 @@ public class UserHandler extends Thread{
         input = new Scanner(socket.getInputStream());
         writer = new PrintWriter(socket.getOutputStream(), true);
 
- 
     }
-    
 
-
-        @Override
+    @Override
     public void run() {
         try {
             String message = input.nextLine(); //IMPORTANT blocking call
@@ -44,12 +42,20 @@ public class UserHandler extends Thread{
                     userName = msgArray[1];
                     CS.sendUserList();
                     CS.userConnected(userName);
-                    
+
                 }
+
                 //Also adds sender to the message. 
                 if (msgArray[0].equals("MSG")) {
                     CS.send(msgArray[1], ProtocolStrings.MSGtoUser(userName, msgArray[2]));
                 }
+
+                if(msgArray[0].equals("USERLIST")){
+                   
+                    CS.sendUserList();
+                    //writer.println(userList);
+                }
+
                 try {
                     message = input.nextLine(); //IMPORTANT blocking call
                 } catch (NoSuchElementException e) {
@@ -63,7 +69,7 @@ public class UserHandler extends Thread{
         } catch (IOException ex) {
             Logger.getLogger(ChatServer.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
 
     public void send(String message) {
@@ -71,8 +77,7 @@ public class UserHandler extends Thread{
         Logger.getLogger(ChatServer.class.getName()).log(Level.INFO, String.format("Received the message: %1$S ", message));
     }
 
-      public String getUserName() {
+    public String getUserName() {
         return userName;
     }
 }
-

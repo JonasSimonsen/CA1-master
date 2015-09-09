@@ -5,12 +5,14 @@
  */
 package chatclient;
 
+import chatserver.ChatServer;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Random;
@@ -32,10 +34,8 @@ public class ChatClient extends Observable implements Runnable {
     private PrintWriter output;
     private String userName;
     private ArrayList<String> userList;
-
-//    public ChatClient(EchoGUI gui) {
-//        GUI = gui;
-//    }
+    private ChatServer CS;
+    
     public ChatClient(String userName) {
         this.userName = userName;
         userList = new ArrayList<>();
@@ -79,30 +79,28 @@ public class ChatClient extends Observable implements Runnable {
         output.println(ProtocolStrings.STOP);
     }
 
-    @Override
+ @Override
     public void run() {
-        while (true) {
-
-            String msg = input.nextLine();
-            String[] msgArray = msg.split("#");
-            if (msgArray[0].equals("USERLIST")) {
-                userList.clear();
-                for (String str : msgArray[1].split(",")) {
-                    userList.add(str);
-                }
-            }
-            setChanged();
-            notifyObservers(msg);
-
-            if (msg.equals(ProtocolStrings.STOP)) {
-                try {
-                    socket.close();
-                    break;
-                } catch (IOException ex) {
-                    Logger.getLogger(ChatClient.class.getName()).log(Level.SEVERE, null, ex);
-                }
+        while(true){
+        String msg = input.nextLine();
+        String[] msgArray = msg.split("#");
+        if(msgArray[0].equals("USERLIST")){
+            userList.clear();
+            for(String str : msgArray[1].split(",")){
+                userList.add(str);
             }
         }
+        CS.sendUserList();
+        setChanged();
+        notifyObservers(msg);
+        if (msg.equals(ProtocolStrings.STOP)) {
+            try {
+                socket.close();
+                break;
+            } catch (IOException ex) {
+                Logger.getLogger(ChatClient.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }}
     }
 
     public static void main(String[] args) {

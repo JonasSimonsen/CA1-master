@@ -1,164 +1,44 @@
-sep 09, 2015 9:08:40 AM chatserver.ChatServer runServer
+sep 09, 2015 10:18:37 AM chatserver.ChatServer runServer
 INFO: Sever started. Listening on: 9090, bound to: localhost
-sep 09, 2015 9:09:01 AM chatserver.ChatServer runServer
+sep 09, 2015 10:18:49 AM chatserver.ChatServer runServer
 INFO: Connected to a client
-sep 09, 2015 9:09:01 AM chatserver.UserHandler send
+sep 09, 2015 10:18:49 AM chatserver.UserHandler send
 INFO: Received the message: USERLIST# 
-sep 09, 2015 9:09:20 AM chatserver.ChatServer runServer
+sep 09, 2015 10:18:49 AM chatserver.UserHandler run
+INFO: Received the message: USER#CLIENT 590 
+sep 09, 2015 10:18:49 AM chatserver.UserHandler send
+INFO: Received the message: USERLIST#CLIENT 590 
+sep 09, 2015 10:18:49 AM chatserver.UserHandler send
+INFO: Received the message: MSG#SERVER:#CLIENT 590 HAVE CONNECTED! 
+sep 09, 2015 10:22:31 AM chatserver.ChatServer runServer
 INFO: Connected to a client
-sep 09, 2015 9:09:20 AM chatserver.UserHandler send
-INFO: Received the message: USERLIST#, 
-sep 09, 2015 9:09:20 AM chatserver.UserHandler send
-INFO: Received the message: USERLIST#, 
-sep 09, 2015 9:09:26 AM chatserver.UserHandler run
-INFO: Received the message: USER#ANDREA 
-sep 09, 2015 9:09:26 AM chatserver.UserHandler send
-INFO: Received the message: USERLIST#,ANDREA 
-sep 09, 2015 9:09:26 AM chatserver.UserHandler send
-INFO: Received the message: USERLIST#,ANDREA 
-sep 09, 2015 9:09:26 AM chatserver.UserHandler send
-INFO: Received the message: MSG#SERVER:#ANDREA HAVE CONNECTED! 
-sep 09, 2015 9:09:26 AM chatserver.UserHandler send
-INFO: Received the message: MSG#SERVER:#ANDREA HAVE CONNECTED! 
-sep 09, 2015 9:09:32 AM chatserver.UserHandler run
-INFO: Received the message: USER#ANDREAS 
-sep 09, 2015 9:09:32 AM chatserver.UserHandler send
-INFO: Received the message: USERLIST#ANDREAS,ANDREA 
-sep 09, 2015 9:09:32 AM chatserver.UserHandler send
-INFO: Received the message: USERLIST#ANDREAS,ANDREA 
-sep 09, 2015 9:09:32 AM chatserver.UserHandler send
-INFO: Received the message: MSG#SERVER:#ANDREAS HAVE CONNECTED! 
-sep 09, 2015 9:09:32 AM chatserver.UserHandler send
-INFO: Received the message: MSG#SERVER:#ANDREAS HAVE CONNECTED! 
-sep 09, 2015 9:09:46 AM chatserver.UserHandler send
-INFO: Received the message: MSG#ANDREAS#HEJ 
-sep 09, 2015 9:09:54 AM chatserver.UserHandler send
-INFO: Received the message: MSG#ANDREA#HEJ 
-sep 09, 2015 9:10:24 AM chatserver.UserHandler send
-INFO: Received the message: MSG#ANDREAS#HVA SAA 
-sep 09, 2015 9:10:37 AM chatserver.UserHandler send
-INFO: Received the message: MSG#ANDREA#HEEEEEEEJ 
-sep 09, 2015 9:10:55 AM chatserver.UserHandler send
-INFO: Received the message: USERLIST#ANDREA 
-sep 09, 2015 9:10:55 AM chatserver.UserHandler run
+sep 09, 2015 10:22:31 AM chatserver.UserHandler send
+INFO: Received the message: USERLIST#CLIENT 590, 
+sep 09, 2015 10:22:31 AM chatserver.UserHandler run
+INFO: Received the message: USER#CLIENT 590 
+sep 09, 2015 10:22:31 AM chatserver.UserHandler send
+INFO: Received the message: USERLIST#CLIENT 590, 
+sep 09, 2015 10:22:31 AM chatserver.UserHandler send
+INFO: Received the message: USERLIST#CLIENT 590,CLIENT 590 
+sep 09, 2015 10:22:31 AM chatserver.UserHandler send
+INFO: Received the message: USERLIST#CLIENT 590,CLIENT 590 
+sep 09, 2015 10:22:31 AM chatserver.UserHandler send
+INFO: Received the message: MSG#SERVER:#CLIENT 590 HAVE CONNECTED! 
+sep 09, 2015 10:22:31 AM chatserver.UserHandler send
+INFO: Received the message: MSG#SERVER:#CLIENT 590 HAVE CONNECTED! 
+sep 09, 2015 10:22:37 AM chatserver.UserHandler run
 INFO: Closed a Connection
-sep 09, 2015 9:10:58 AM chatserver.UserHandler run
+sep 09, 2015 10:22:37 AM chatserver.UserHandler run
 INFO: Closed a Connection
-sep 09, 2015 9:11:13 AM chatserver.ChatServer runServer
+sep 09, 2015 10:22:47 AM chatserver.ChatServer runServer
 INFO: Connected to a client
-sep 09, 2015 9:11:13 AM chatserver.UserHandler send
+sep 09, 2015 10:22:47 AM chatserver.UserHandler send
 INFO: Received the message: USERLIST# 
-sep 09, 2015 9:11:19 AM chatserver.ChatServer runServer
-INFO: Connected to a client
-sep 09, 2015 9:11:19 AM chatserver.UserHandler send
-INFO: Received the message: USERLIST#, 
-sep 09, 2015 9:11:19 AM chatserver.UserHandler send
-INFO: Received the message: USERLIST#, 
-sep 09, 2015 9:11:44 AM chatserver.UserHandler run
-INFO: Received the message: USER#CMDONE 
-sep 09, 2015 9:11:44 AM chatserver.UserHandler send
-INFO: Received the message: USERLIST#CMDONE, 
-sep 09, 2015 9:11:44 AM chatserver.UserHandler send
-INFO: Received the message: USERLIST#CMDONE, 
-sep 09, 2015 9:11:44 AM chatserver.UserHandler send
-INFO: Received the message: MSG#SERVER:#CMDONE HAVE CONNECTED! 
-sep 09, 2015 9:11:44 AM chatserver.UserHandler send
-INFO: Received the message: MSG#SERVER:#CMDONE HAVE CONNECTED! 
-sep 09, 2015 9:11:49 AM chatserver.UserHandler run
-INFO: Received the message: USER#CMDTWO 
-sep 09, 2015 9:11:49 AM chatserver.UserHandler send
-INFO: Received the message: USERLIST#CMDONE,CMDTWO 
-sep 09, 2015 9:11:49 AM chatserver.UserHandler send
-INFO: Received the message: USERLIST#CMDONE,CMDTWO 
-sep 09, 2015 9:11:49 AM chatserver.UserHandler send
-INFO: Received the message: MSG#SERVER:#CMDTWO HAVE CONNECTED! 
-sep 09, 2015 9:11:49 AM chatserver.UserHandler send
-INFO: Received the message: MSG#SERVER:#CMDTWO HAVE CONNECTED! 
-sep 09, 2015 9:12:00 AM chatserver.UserHandler send
-INFO: Received the message: MSG#CMDONE#ALL 
-sep 09, 2015 9:12:00 AM chatserver.UserHandler send
-INFO: Received the message: MSG#CMDONE#ALL 
-sep 09, 2015 9:12:45 AM chatserver.ChatServer runServer
-INFO: Connected to a client
-sep 09, 2015 9:12:45 AM chatserver.UserHandler send
-INFO: Received the message: USERLIST#CMDONE,CMDTWO, 
-sep 09, 2015 9:12:45 AM chatserver.UserHandler send
-INFO: Received the message: USERLIST#CMDONE,CMDTWO, 
-sep 09, 2015 9:12:45 AM chatserver.UserHandler send
-INFO: Received the message: USERLIST#CMDONE,CMDTWO, 
-sep 09, 2015 9:12:51 AM chatserver.ChatServer runServer
-INFO: Connected to a client
-sep 09, 2015 9:12:51 AM chatserver.UserHandler send
-INFO: Received the message: USERLIST#CMDONE,CMDTWO,, 
-sep 09, 2015 9:12:51 AM chatserver.UserHandler send
-INFO: Received the message: USERLIST#CMDONE,CMDTWO,, 
-sep 09, 2015 9:12:51 AM chatserver.UserHandler send
-INFO: Received the message: USERLIST#CMDONE,CMDTWO,, 
-sep 09, 2015 9:12:51 AM chatserver.UserHandler send
-INFO: Received the message: USERLIST#CMDONE,CMDTWO,, 
-sep 09, 2015 9:12:59 AM chatserver.UserHandler run
-INFO: Received the message: USER#CMDTHREE 
-sep 09, 2015 9:12:59 AM chatserver.UserHandler send
-INFO: Received the message: USERLIST#CMDONE,CMDTWO,CMDTHREE, 
-sep 09, 2015 9:12:59 AM chatserver.UserHandler send
-INFO: Received the message: USERLIST#CMDONE,CMDTWO,CMDTHREE, 
-sep 09, 2015 9:12:59 AM chatserver.UserHandler send
-INFO: Received the message: USERLIST#CMDONE,CMDTWO,CMDTHREE, 
-sep 09, 2015 9:12:59 AM chatserver.UserHandler send
-INFO: Received the message: USERLIST#CMDONE,CMDTWO,CMDTHREE, 
-sep 09, 2015 9:12:59 AM chatserver.UserHandler send
-INFO: Received the message: MSG#SERVER:#CMDTHREE HAVE CONNECTED! 
-sep 09, 2015 9:12:59 AM chatserver.UserHandler send
-INFO: Received the message: MSG#SERVER:#CMDTHREE HAVE CONNECTED! 
-sep 09, 2015 9:12:59 AM chatserver.UserHandler send
-INFO: Received the message: MSG#SERVER:#CMDTHREE HAVE CONNECTED! 
-sep 09, 2015 9:12:59 AM chatserver.UserHandler send
-INFO: Received the message: MSG#SERVER:#CMDTHREE HAVE CONNECTED! 
-sep 09, 2015 9:13:06 AM chatserver.UserHandler run
-INFO: Received the message: USER#CMDFOUR 
-sep 09, 2015 9:13:06 AM chatserver.UserHandler send
-INFO: Received the message: USERLIST#CMDONE,CMDTWO,CMDTHREE,CMDFOUR 
-sep 09, 2015 9:13:06 AM chatserver.UserHandler send
-INFO: Received the message: USERLIST#CMDONE,CMDTWO,CMDTHREE,CMDFOUR 
-sep 09, 2015 9:13:06 AM chatserver.UserHandler send
-INFO: Received the message: USERLIST#CMDONE,CMDTWO,CMDTHREE,CMDFOUR 
-sep 09, 2015 9:13:06 AM chatserver.UserHandler send
-INFO: Received the message: USERLIST#CMDONE,CMDTWO,CMDTHREE,CMDFOUR 
-sep 09, 2015 9:13:06 AM chatserver.UserHandler send
-INFO: Received the message: MSG#SERVER:#CMDFOUR HAVE CONNECTED! 
-sep 09, 2015 9:13:06 AM chatserver.UserHandler send
-INFO: Received the message: MSG#SERVER:#CMDFOUR HAVE CONNECTED! 
-sep 09, 2015 9:13:06 AM chatserver.UserHandler send
-INFO: Received the message: MSG#SERVER:#CMDFOUR HAVE CONNECTED! 
-sep 09, 2015 9:13:06 AM chatserver.UserHandler send
-INFO: Received the message: MSG#SERVER:#CMDFOUR HAVE CONNECTED! 
-sep 09, 2015 9:13:18 AM chatserver.UserHandler send
-INFO: Received the message: MSG#CMDONE#HVA LAVER I 
-sep 09, 2015 9:13:19 AM chatserver.UserHandler send
-INFO: Received the message: MSG#CMDONE#HVA LAVER I 
-sep 09, 2015 9:13:19 AM chatserver.UserHandler send
-INFO: Received the message: MSG#CMDONE#HVA LAVER I 
-sep 09, 2015 9:13:19 AM chatserver.UserHandler send
-INFO: Received the message: MSG#CMDONE#HVA LAVER I 
-sep 09, 2015 9:13:33 AM chatserver.UserHandler send
-INFO: Received the message: MSG#CMDONE#HEJ MDUDE 
-sep 09, 2015 9:14:57 AM chatserver.UserHandler send
-INFO: Received the message: USERLIST#CMDTWO,CMDTHREE,CMDFOUR 
-sep 09, 2015 9:14:57 AM chatserver.UserHandler send
-INFO: Received the message: USERLIST#CMDTWO,CMDTHREE,CMDFOUR 
-sep 09, 2015 9:14:57 AM chatserver.UserHandler send
-INFO: Received the message: USERLIST#CMDTWO,CMDTHREE,CMDFOUR 
-sep 09, 2015 9:14:57 AM chatserver.UserHandler run
-INFO: Closed a Connection
-sep 09, 2015 9:15:01 AM chatserver.UserHandler send
-INFO: Received the message: USERLIST#CMDTHREE,CMDFOUR 
-sep 09, 2015 9:15:01 AM chatserver.UserHandler send
-INFO: Received the message: USERLIST#CMDTHREE,CMDFOUR 
-sep 09, 2015 9:15:01 AM chatserver.UserHandler run
-INFO: Closed a Connection
-sep 09, 2015 9:15:04 AM chatserver.UserHandler send
-INFO: Received the message: USERLIST#CMDFOUR 
-sep 09, 2015 9:15:04 AM chatserver.UserHandler run
-INFO: Closed a Connection
-sep 09, 2015 9:15:08 AM chatserver.UserHandler run
+sep 09, 2015 10:22:47 AM chatserver.UserHandler run
+INFO: Received the message: USER#CLIENT 823 
+sep 09, 2015 10:22:47 AM chatserver.UserHandler send
+INFO: Received the message: USERLIST#CLIENT 823 
+sep 09, 2015 10:22:47 AM chatserver.UserHandler send
+INFO: Received the message: MSG#SERVER:#CLIENT 823 HAVE CONNECTED! 
+sep 09, 2015 10:22:56 AM chatserver.UserHandler run
 INFO: Closed a Connection

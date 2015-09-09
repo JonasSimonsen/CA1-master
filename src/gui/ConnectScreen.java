@@ -1,7 +1,10 @@
 package gui;
 
 import chatclient.ChatClient;
+import chatserver.ChatServer;
+import chatserver.UserHandler;
 import java.io.IOException;
+import java.net.Socket;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.logging.Level;
@@ -9,15 +12,18 @@ import java.util.logging.Logger;
 
 public class ConnectScreen extends javax.swing.JFrame implements Observer {
 
-    private int port = 9090;
-    private String ip = "localhost";
-    ChatClient CC;
+
+    private ChatClient CC;
+    private ChatServer CS;
+    private Socket socket = new Socket();
 
     public ConnectScreen() {
         initComponents();
         CC = new ChatClient();
         CC.addObserver(this);
     }
+    
+           
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -75,13 +81,33 @@ public class ConnectScreen extends javax.swing.JFrame implements Observer {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-                CC = new ChatClient(jTextField1.getText());
-                CC.addObserver(this);
+               
+        
+        
+                
+                 
+                
         try {
-            CC.connect(ip, port);
+            CC.connect("localhost", 9090);
+            CC.addObserver(this);
+            CC.run();
+            
+            
+            
         } catch (IOException ex) {
             Logger.getLogger(ConnectScreen.class.getName()).log(Level.SEVERE, null, ex);
-        }      
+        }   
+        
+        
+       
+        
+        final ChatScreen chat = new ChatScreen();
+        setVisible(false);
+        chat.setVisible(true);
+        
+        
+        
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed

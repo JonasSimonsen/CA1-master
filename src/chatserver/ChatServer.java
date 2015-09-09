@@ -50,6 +50,7 @@ public class ChatServer {
         users.remove(uh);
         System.out.println("Removed a client");
         sendUserList();
+//        
     }
 
     public void send(String receiveres, String msg) {
@@ -72,7 +73,7 @@ public class ChatServer {
     public void sendUserList() {
         String msg = "";
         for (UserHandler uh : users) {
-            msg += uh.getUserList() + ",";
+            msg += uh.getUserName() + ",";
         }
         //Fjerner den sidste komma
         if (msg.endsWith(",")) {
@@ -83,10 +84,17 @@ public class ChatServer {
             uh.send(ProtocolStrings.userList(msg));
         }
     }
+    
+    public void userConnected(String ClientName) {
+        for (UserHandler uh : users) {
+            uh.send(ProtocolStrings.MSGtoUser("SERVER:", ClientName + " have connected!"));
+        }
+    }
 
     public static void main(String[] args) {
         String logFile = properties.getProperty("logFile");
         Utils.setLogFile(logFile, ChatServer.class.getName());
+        
         new ChatServer().runServer();
         Utils.closeLogger(ChatServer.class.getName());
 

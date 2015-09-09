@@ -3,67 +3,76 @@ package chatserver;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 import shared.ProtocolStrings;
 
 public class UserHandler extends Thread{
 
-    ChatServer mainServer;
-    public Socket s;
+  
+   
+    Socket socket;
     Scanner input;
     PrintWriter writer;
-    public String clientUsername;
+    
+    private String userName = "";
+    private ChatServer CS;
 
     //declare possible states for client
     //start the state of the client as connecting. We just instiated the object
-    public UserHandler(Socket socket, ChatServer mainServer) throws IOException {
-        this.mainServer = mainServer;
-        s = socket;
-        input = new Scanner(s.getInputStream());
-        writer = new PrintWriter(s.getOutputStream(), true);
+    public UserHandler(Socket socket, ChatServer CS) throws IOException {
+        this.socket = socket;
+        this.CS = CS;
+        input = new Scanner(socket.getInputStream());
+        writer = new PrintWriter(socket.getOutputStream(), true);
 
-        clientUsername = "";
+ 
     }
     
-    public synchronized void handleIncomingProtocolCommand(String message) {
-        ServerCommandParser cp = new ServerCommandParser(this, mainServer);
-        cp.analyseCommand(message);//ASK TEACHER: make this a start() so we can return to execution? or this will break the
-        //syncronised block?
-    }
 
-    @Override
+
+        @Override
     public void run() {
-        String message = input.nextLine();
-        //Logger is thread-safe, thank god
-
-        while (!message.equals(ProtocolStrings.STOP)) {
-            chatLogger.log(Level.INFO, this.getName() + " received the message: " + message);
-            handleIncomingProtocolCommand(message);
-            message = input.nextLine();
-
-        }
-        chatLogger.log(Level.INFO, this.getName() + " received the message: " + message);
-        handleIncomingProtocolCommand(message);
-
         try {
-            writer.close();
-            s.close();
+            String message = input.nextLine(); //IMPORTANT blocking call
+            Logger.getLogger(ChatServer.class.getName()).log(Level.INFO, String.format("Received the message: %1$S ", message));
+            while (!message.equals(ProtocolStrings.STOP)) {
+                String[] msgArray = message.split("#");
+                if (msgArray[0].equals("USER")) {
+                    userName = msgArray[1];
+                    CS.sendUserList();
+                    CS.userConnected(userName);
+                    
+                }
+                //Also adds sender to the message. 
+                if (msgArray[0].equals("MSG")) {
+                    CS.send(msgArray[1], ProtocolStrings.MSGtoUser(userName, msgArray[2]));
+                }
+                try {
+                    message = input.nextLine(); //IMPORTANT blocking call
+                } catch (NoSuchElementException e) {
+                    break;
+                }
+            }
+            writer.println(ProtocolStrings.STOP);//Echo the stop message back to the client for a nice closedown
+            socket.close();
+            CS.removeHandler(this);
+            Logger.getLogger(ChatServer.class.getName()).log(Level.INFO, "Closed a Connection");
         } catch (IOException ex) {
-            chatLogger.log(Level.SEVERE, null, ex);
+            Logger.getLogger(ChatServer.class.getName()).log(Level.SEVERE, null, ex);
         }
-        chatLogger.log(Level.INFO, this.getName() + "closed a Connection");
+        
     }
 
-    public void send(String msg) {
-        writer.println(msg);
-        chatLogger.log(Level.INFO, this.getName() + "client received: " + msg);
+    public void send(String message) {
+        writer.println(message);
+        Logger.getLogger(ChatServer.class.getName()).log(Level.INFO, String.format("Received the message: %1$S ", message));
     }
 
-    public Object getUserName() {
-    }
-
-    String getUserList() {
+      public String getUserName() {
+        return userName;
     }
 }
 

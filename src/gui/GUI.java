@@ -9,12 +9,14 @@ import java.util.logging.Logger;
 
 public class GUI extends javax.swing.JFrame implements Observer {
 
-    private ChatClient client;
+    private int port = 9090;
+    private String ip = "localhost";
+    ChatClient CC;
 
     public GUI() {
         initComponents();
-        client = new ChatClient();
-        client.addObserver(this);
+        CC = new ChatClient();
+        CC.addObserver(this);
     }
 
     @SuppressWarnings("unchecked")
@@ -26,6 +28,12 @@ public class GUI extends javax.swing.JFrame implements Observer {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Connect");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -67,13 +75,18 @@ public class GUI extends javax.swing.JFrame implements Observer {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+                CC = new ChatClient(jTextField1.getText());
+                CC.addObserver(this);
         try {
-            client.connect("localhost", 9090);
-            new Thread(client).start();
+            CC.connect(ip, port);
         } catch (IOException ex) {
             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }      
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

@@ -39,8 +39,7 @@ public class ChatServer {
                 UH.start();
                 users.add(UH);
                 System.out.println("Added a new user");
-                UH.send("Welcome!");
-//                sendUserList();
+                UH.send("Welcome!"); //Temporary solution to fix telnet invisible first line in CMD
             } while (keepRunning);
         } catch (IOException ex) {
             Logger.getLogger(ChatServer.class.getName()).log(Level.SEVERE, null, ex);
@@ -92,6 +91,12 @@ public class ChatServer {
     public void userConnected(String ClientName) {
         for (UserHandler uh : users) {
             uh.send(ProtocolStrings.MSGtoUser("SERVER:", ClientName + " have connected!"));
+        }
+    }
+    
+    public void userDisconnected(String ClientName) {
+        for (UserHandler uh : users) {
+            uh.send(ProtocolStrings.MSGtoUser("SERVER:", ClientName + " have disconnected!"));
         }
     }
 

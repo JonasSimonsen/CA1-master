@@ -91,7 +91,7 @@ public class ChatClient extends Observable implements Runnable {
                 userList.add(str);
             }
         }
-        CS.sendUserList();
+        //CS.sendUserList();
         setChanged();
         notifyObservers(msg);
         if (msg.equals(ProtocolStrings.STOP)) {

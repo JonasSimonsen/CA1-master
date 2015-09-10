@@ -82,6 +82,7 @@ public class ChatClient extends Observable implements Runnable {
  @Override
     public void run() {
         while(true){
+        
         String msg = input.nextLine();
         String[] msgArray = msg.split("#");
         if(msgArray[0].equals("USERLIST")){

@@ -44,12 +44,13 @@ public class UserHandler extends Thread {
                     CS.userConnected(userName);
 
                 }
-
+                
+                if(this.userName != null)
                 //Also adds sender to the message. 
                 if (msgArray[0].equals("MSG")) {
                     CS.send(msgArray[1], ProtocolStrings.MSGtoUser(userName, msgArray[2]));
                 }
-
+                
                 if(msgArray[0].equals("USERLIST")){
                    
                     CS.sendUserList();
@@ -59,7 +60,7 @@ public class UserHandler extends Thread {
                 try {
                     message = input.nextLine(); //IMPORTANT blocking call
                 } catch (NoSuchElementException e) {
-                    break;
+                    
                 }
             }
             writer.println(ProtocolStrings.STOP);//Echo the stop message back to the client for a nice closedown

@@ -39,7 +39,8 @@ public class ChatServer {
                 UH.start();
                 users.add(UH);
                 System.out.println("Added a new user");
-                sendUserList();
+                UH.send("Welcome!");
+//                sendUserList();
             } while (keepRunning);
         } catch (IOException ex) {
             Logger.getLogger(ChatServer.class.getName()).log(Level.SEVERE, null, ex);

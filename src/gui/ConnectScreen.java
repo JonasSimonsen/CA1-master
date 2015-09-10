@@ -92,7 +92,7 @@ public class ConnectScreen extends javax.swing.JFrame implements Observer {
                 
                  
                 
-        
+        UH.send("USER#"+jTextField1.getText());
             
             CC = new ChatClient(jTextField1.getText());
             CC.addObserver(this);

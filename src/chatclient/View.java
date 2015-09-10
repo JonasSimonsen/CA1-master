@@ -24,6 +24,9 @@ public class View extends javax.swing.JFrame implements Observer{
     private ChatClient CC;
     private int port = 9090;
     private String ip = "localhost";
+    private static boolean btn1Clicked = false;
+    private static boolean btn2Clicked = false;
+    
     
     /**
      * Creates new form View
@@ -34,6 +37,12 @@ public class View extends javax.swing.JFrame implements Observer{
              ip = args[1];
         }
         initComponents();
+        
+        
+        
+        DisconnectButton.setEnabled(false);
+        MessageField.setEnabled(false);
+        jTextArea1.setEditable(false);
         
     }
 
@@ -99,7 +108,7 @@ public class View extends javax.swing.JFrame implements Observer{
         });
 
         jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            String[] strings = { "Connect" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
@@ -171,7 +180,16 @@ public class View extends javax.swing.JFrame implements Observer{
             CC.connect("localhost", 9090);         
         } catch (IOException ex) {
             Logger.getLogger(ConnectScreen.class.getName()).log(Level.SEVERE, null, ex);
-        }          
+        }    
+    btn1Clicked = true;
+    jList1.setVisible(true);
+    jTextArea1.setVisible(true);
+    if(btn1Clicked == true){
+    ConnectButton.setEnabled(false);
+    DisconnectButton.setEnabled(true);
+    MessageField.setEnabled(true);
+    }
+
     }//GEN-LAST:event_ConnectButtonActionPerformed
 
     private void UsernameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsernameFieldActionPerformed

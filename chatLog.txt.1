@@ -1,6 +1,6 @@
-sep 10, 2015 12:23:32 PM chatserver.ChatServer runServer
+sep 11, 2015 1:30:16 PM chatserver.ChatServer runServer
 INFO: Sever started. Listening on: 9090, bound to: localhost
-sep 10, 2015 12:23:32 PM chatserver.ChatServer runServer
+sep 11, 2015 1:30:16 PM chatserver.ChatServer runServer
 SEVERE: null
 java.net.BindException: Address already in use: JVM_Bind
 	at java.net.DualStackPlainSocketImpl.bind0(Native Method)
@@ -10,5 +10,7 @@ java.net.BindException: Address already in use: JVM_Bind
 	at java.net.ServerSocket.bind(ServerSocket.java:376)
 	at java.net.ServerSocket.bind(ServerSocket.java:330)
 	at chatserver.ChatServer.runServer(ChatServer.java:34)
-	at chatserver.ChatServer.main(ChatServer.java:101)
+	at chatserver.ChatServer.main(ChatServer.java:107)
+	at ChatTest$1.run(ChatTest.java:40)
+	at java.lang.Thread.run(Thread.java:745)
 

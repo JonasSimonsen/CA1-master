@@ -1,18 +1,32 @@
-sep 11, 2015 8:34:55 AM chatserver.ChatServer runServer
+sep 11, 2015 1:57:34 PM chatserver.ChatServer runServer
 INFO: Sever started. Listening on: 9090, bound to: localhost
-sep 11, 2015 8:35:26 AM chatserver.ChatServer runServer
+sep 11, 2015 1:57:52 PM chatserver.ChatServer runServer
 INFO: Connected to a client
-sep 11, 2015 8:35:26 AM chatserver.UserHandler send
-INFO: Received the message: WELCOME! 
-sep 11, 2015 8:35:26 AM chatserver.UserHandler run
-INFO: Received the message: USER#CHRIS 
-sep 11, 2015 8:35:26 AM chatserver.UserHandler send
-INFO: Received the message: USERLIST#CHRIS 
-sep 11, 2015 8:35:26 AM chatserver.UserHandler send
-INFO: Received the message: MSG#SERVER:#CHRIS HAVE CONNECTED! 
-sep 11, 2015 8:35:30 AM chatserver.UserHandler send
-INFO: Received the message: MSG#CHRIS#LOL 
-sep 11, 2015 8:35:39 AM chatserver.UserHandler send
-INFO: Received the message: MSG#CHRIS#HUEHÚE 
-sep 11, 2015 8:35:42 AM chatserver.UserHandler run
+sep 11, 2015 1:57:55 PM chatserver.UserHandler run
+INFO: Received the message: USER#K 
+sep 11, 2015 1:57:55 PM chatserver.UserHandler send
+INFO: Received the message: USERLIST#K 
+sep 11, 2015 1:57:55 PM chatserver.UserHandler send
+INFO: Received the message: MSG#SERVER#K HAS CONNECTED! 
+sep 11, 2015 1:58:04 PM chatserver.ChatServer runServer
+INFO: Connected to a client
+sep 11, 2015 1:58:06 PM chatserver.UserHandler run
+INFO: Received the message: USER#L 
+sep 11, 2015 1:58:06 PM chatserver.UserHandler send
+INFO: Received the message: USERLIST#K,L 
+sep 11, 2015 1:58:06 PM chatserver.UserHandler send
+INFO: Received the message: USERLIST#K,L 
+sep 11, 2015 1:58:06 PM chatserver.UserHandler send
+INFO: Received the message: MSG#SERVER#L HAS CONNECTED! 
+sep 11, 2015 1:58:06 PM chatserver.UserHandler send
+INFO: Received the message: MSG#SERVER#L HAS CONNECTED! 
+sep 11, 2015 1:58:17 PM chatserver.UserHandler send
+INFO: Received the message: USERLIST#K,L 
+sep 11, 2015 1:58:17 PM chatserver.UserHandler send
+INFO: Received the message: USERLIST#K,L 
+sep 11, 2015 1:58:20 PM chatserver.UserHandler send
+INFO: Received the message: USERLIST#K 
+sep 11, 2015 1:58:20 PM chatserver.UserHandler run
+INFO: Closed a Connection
+sep 11, 2015 1:58:23 PM chatserver.UserHandler run
 INFO: Closed a Connection

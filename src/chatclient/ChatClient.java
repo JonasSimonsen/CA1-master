@@ -50,6 +50,10 @@ public class ChatClient extends Observable implements Runnable {
     public String getUserName() {
         return userName;
     }
+    
+                public Socket getSocket() {
+        return socket;
+    }
 
     public void register() {
         output.println(ProtocolStrings.connectUser(userName));
@@ -105,8 +109,9 @@ public class ChatClient extends Observable implements Runnable {
     }
 
     public static void main(String[] args) {
+        
         int port = 9090;
-        String ip = "localhost";
+        String ip = "VMAHL.cloudapp.net";
         if (args.length == 2) {
             port = Integer.parseInt(args[0]);
             ip = args[1];
@@ -133,5 +138,7 @@ public class ChatClient extends Observable implements Runnable {
             Logger.getLogger(ChatClient.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+
 
 }

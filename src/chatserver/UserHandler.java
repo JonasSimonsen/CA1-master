@@ -18,7 +18,9 @@ public class UserHandler extends Thread {
     PrintWriter writer;
     private ArrayList<String> userList;
 
-    private String userName = "";
+
+
+    private String userName = null;
     private ChatServer CS;
 
     //declare possible states for client
@@ -81,4 +83,7 @@ public class UserHandler extends Thread {
     public String getUserName() {
         return userName;
     }
+    
+
+    
 }

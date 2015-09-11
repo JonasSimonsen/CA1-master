@@ -1,6 +1,6 @@
 package chatclient;
 
-import gui.ConnectScreen;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -14,7 +14,7 @@ public class View extends javax.swing.JFrame implements Observer{
     
     private ChatClient CC;
     private int port = 9090;
-    private String ip = "localhost";
+    private String ip = "VMAHL.cloudapp.net";
     private static boolean btn1Clicked = false;
     private static boolean btn2Clicked = false;
     
@@ -157,9 +157,9 @@ public class View extends javax.swing.JFrame implements Observer{
             CC = new ChatClient(UsernameField.getText());
             CC.addObserver(this);
             try {
-            CC.connect("localhost", 9090);         
+            CC.connect("VMAHL.cloudapp.net", 9090);         
         } catch (IOException ex) {
-            Logger.getLogger(ConnectScreen.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
         }    
     btn1Clicked = true;
     jList1.setVisible(true);

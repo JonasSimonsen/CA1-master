@@ -87,26 +87,19 @@ public class ChatTest {
         s.close();
     }
     
-    @Test (expected = IOException.class )
-    public void testSTOPProtocol() throws Exception {
-        String address = "localhost";
-        int port = 9090;
-
-        Socket s = new Socket(address, port);
-        Scanner scanner = new Scanner(s.getInputStream());
-        PrintWriter printwriter = new PrintWriter(s.getOutputStream(), true);
-        
-        printwriter.println("USER#Lise");
-        String result = scanner.nextLine();
-        System.out.println("result");
-        result = scanner.nextLine();
-        
-        
-        
-        
-        
-        printwriter.println("STOP#");
-        s.close();
-    }
+//    @Test (expected = IOException.class )
+//    public void testSTOPProtocol() throws Exception {
+//        String address = "localhost";
+//        int port = 9090;
+//
+//        Socket s = new Socket(address, port);
+//        Scanner scanner = new Scanner(s.getInputStream());
+//        PrintWriter printwriter = new PrintWriter(s.getOutputStream(), true);
+//        
+//        printwriter.println("USER#Lise");
+//        String result = scanner.nextLine();
+//        System.out.println("result");
+//        result = scanner.nextLine();
+//    }
 
 }

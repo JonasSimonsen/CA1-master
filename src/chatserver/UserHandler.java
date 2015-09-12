@@ -20,7 +20,7 @@ public class UserHandler extends Thread {
 
 
 
-    private String userName = null;
+    private String userName = "";
     private ChatServer CS;
 
     //declare possible states for client
@@ -47,8 +47,7 @@ public class UserHandler extends Thread {
 
                 }
                 
-                if(this.userName != null)
-                //Also adds sender to the message. 
+                if(this.userName != "")
                 if (msgArray[0].equals("MSG")) {
                     CS.send(msgArray[1], ProtocolStrings.MSGtoUser(userName, msgArray[2]));
                 }
@@ -56,7 +55,7 @@ public class UserHandler extends Thread {
                 if(msgArray[0].equals("USERLIST")){
                    
                     CS.sendUserList();
-                    //writer.println(userList);
+                    
                 }
 
                 try {

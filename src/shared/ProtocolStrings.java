@@ -5,15 +5,11 @@
  */
 package shared;
 
-import chatserver.ChatServer;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
 /**
  *
  * @author jonassimonsen
  */
+
 public class ProtocolStrings {
 
     public static String STOP = "STOP#";

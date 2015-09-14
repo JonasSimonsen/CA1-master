@@ -1,13 +1,11 @@
 package chatserver;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Properties;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import shared.ProtocolStrings;
@@ -18,10 +16,30 @@ public class ChatServer {
     private static boolean keepRunning = true;
     private static ServerSocket serverSocket;
     private static final Properties properties = Utils.initProperties("server.properties");
-    private ArrayList<UserHandler> users = new ArrayList<>();
+    private final ArrayList<UserHandler> users = new ArrayList<>();
+
+    public static void main(String[] args) {
+        String logFile = properties.getProperty("logFile");
+        Utils.setLogFile(logFile, ChatServer.class.getName());
+
+        new ChatServer().runServer();
+        Utils.closeLogger(ChatServer.class.getName());
+    }
 
     public static void stopServer() {
         keepRunning = false;
+    }
+
+    public void userConnected(String ClientName) {
+        for (UserHandler uh : users) {
+            uh.send(ProtocolStrings.MSGtoUser("SERVER", ClientName + " has connected!"));
+        }
+    }
+
+    public void userDisconnected(String ClientName) {
+        for (UserHandler uh : users) {
+            uh.send(ProtocolStrings.MSGtoUser("SERVER", ClientName + " has disconnected!"));
+        }
     }
 
     private void runServer() {
@@ -34,11 +52,11 @@ public class ChatServer {
             serverSocket.bind(new InetSocketAddress(ip, port));
             do {
                 Socket socket = serverSocket.accept(); //Important Blocking call
-                Logger.getLogger(ChatServer.class.getName()).log(Level.INFO, "Connected to a client");
+                Logger.getLogger(ChatServer.class.getName()).log(Level.INFO, "Client connected");
                 UserHandler UH = new UserHandler(socket, this);
                 UH.start();
                 users.add(UH);
-                System.out.println("Added a new user");
+                System.out.println("User added");
 //                UH.send("Welcome!"); //Temporary solution to fix telnet invisible first line in CMD
             } while (keepRunning);
         } catch (IOException ex) {
@@ -46,11 +64,19 @@ public class ChatServer {
         }
     }
 
-    public void removeHandler(UserHandler uh) {
-        users.remove(uh);
-        System.out.println("Removed a client");
-        sendUserList();
-        
+    public void sendUserList() {
+        String msg = "";
+        for (UserHandler uh : users) {
+            msg += uh.getUserName() + ",";
+        }
+        //For at fjerner den sidste komma i userList.
+        if (msg.endsWith(",")) {
+            msg = msg.substring(0, msg.length() - 1);
+        }
+
+        for (UserHandler uh : users) {
+            uh.send(ProtocolStrings.userList(msg));
+        }
     }
 
     public void send(String receiveres, String msg) {
@@ -70,42 +96,9 @@ public class ChatServer {
         }
     }
 
-    public void sendUserList() {
-        String msg = "";
-        for (UserHandler uh : users) {
-            msg += uh.getUserName() + ",";
-        }
-        //Fjerner den sidste komma
-        if (msg.endsWith(",")) {
-            msg = msg.substring(0, msg.length() - 1);
-        }
-
-        for (UserHandler uh : users) {
-            uh.send(ProtocolStrings.userList(msg));
-        }
-    }
-    
-    
-
-    
-    public void userConnected(String ClientName) {
-        for (UserHandler uh : users) {
-            uh.send(ProtocolStrings.MSGtoUser("SERVER", ClientName + " has connected!"));
-        }
-    }
-    
-    public void userDisconnected(String ClientName) {
-        for (UserHandler uh : users) {
-            uh.send(ProtocolStrings.MSGtoUser("SERVER", ClientName + " has disconnected!"));
-        }
-    }
-
-    public static void main(String[] args) {
-        String logFile = properties.getProperty("logFile");
-        Utils.setLogFile(logFile, ChatServer.class.getName());
-        
-        new ChatServer().runServer();
-        Utils.closeLogger(ChatServer.class.getName());
-
+    public void removeHandler(UserHandler uh) {
+        users.remove(uh);
+        System.out.println("Client removed");
+        sendUserList();
     }
 }

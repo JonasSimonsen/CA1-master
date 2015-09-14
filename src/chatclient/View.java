@@ -287,7 +287,5 @@ public class View extends javax.swing.JFrame implements Observer{
         if(strArr[0].equals("USERLIST")){
                     jList1.setListData(strArr[1].split(","));
         }
-        
-    
     }
 }

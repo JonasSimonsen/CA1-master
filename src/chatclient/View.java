@@ -19,7 +19,7 @@ public class View extends javax.swing.JFrame implements Observer{
     private static boolean btn2Clicked = false;
     
     public View(String[] args) throws IOException {
-        if (args.length == 2) {
+        if (2 == args.length) {
              port = Integer.parseInt(args[0]);
              ip = args[1];
         }
@@ -253,6 +253,7 @@ public class View extends javax.swing.JFrame implements Observer{
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 try {
                     new View(args).setVisible(true);
